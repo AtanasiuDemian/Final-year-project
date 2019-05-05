@@ -9,6 +9,7 @@ def bootstrap_filter(Y, N, T, alpha, b, sigmasq, delta, mult=1):
     See Andrieu et al,2010 for estimation of marginal likelihood p(y_{1:t}).
     This code was used for simulated decoding in Sec. 6.3, and assumes all initial hidden states are 0.
     '''
+    
     log_marginal_likelihood = 0.0
     particles = np.zeros((N, T+1))
     #particles[:,0] = norm.rvs(scale=np.sqrt(scale**2/(1-alpha**2)), size=N)
