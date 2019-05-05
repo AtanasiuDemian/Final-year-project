@@ -114,3 +114,27 @@ def LatHawkes(T, arrivals, alpha_lmbd, beta_lmbd, alpha_a, beta_a, alpha_b, beta
             size=20, weight='bold')
 
     return samples_lmbd, samples_a, samples_b
+
+
+def predictive_likelihood(lmbd, a, b, train, test, T_train, T_test, L=10000):
+    """
+    Compute Monte Carlo estimate of normalized predictive log-likelihood of Hawkes model as in eq. 3.4.
+    As baseline model I used a homogeneous Poisson process of rate given by MLE on train set.
+    """
+    
+    # First compute homogeneous Poisson MLE
+    hpp_mle = len(train)/T_train
+    hpp_log_likelihood = -hpp_mle*T_test + len(test)*np.log(hpp_mle)
+    likelihood_dist = []
+    sum_log_likelihood = 0.0
+    for l in range(L): 
+        post_lmbd = np.random.choice(lmbd)
+        post_a = np.random.choice(a)
+        post_b = np.random.choice(b)
+        estimate = -post_lmbd*T_test + log_exp_term(post_a, post_b, T_test, test)+log_prod_CIF(
+                    post_lmbd, post_a, post_b, test)
+        sum_log_likelihood += estimate
+        likelihood_dist.append(estimate)
+    mean_log_likelihood = sum_log_likelihood/L
+    
+    return (mean_log_likelihood - hpp_log_likelihood)/len(test), (np.array(likelihood_dist)-hpp_log_likelihood)/len(test)
