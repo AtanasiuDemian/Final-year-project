@@ -24,7 +24,7 @@ def prod_for_b(b, arrivals, t_n, n, omega):  # auxiliary function
 
 def LatHawkes(T, arrivals, alpha_lmbd, beta_lmbd, alpha_a, beta_a, alpha_b, beta_b, scale_b, N=10000):
     """
-    Perform Gibbs sampling on parameters lambda, a, b using Gamma priors.
+    Perform Gibbs sampling on parameters lambda, a, b using Gamma priors, for N iterations.
     Parameters a and lambda are sampled directly from their corresponding posterior distributions.
     Parameter b is sampled via a Random Walk Metropolis step 
     T = length of observation
@@ -32,6 +32,7 @@ def LatHawkes(T, arrivals, alpha_lmbd, beta_lmbd, alpha_a, beta_a, alpha_b, beta
     alpha_lmbd, beta_lmbd, alpha_a, beta_a, alpha_b, beta_b = parameters of Gamma priors.
     scale_b = standard deviation of MCMC proposal for sampling b.
     After sampling the program returns histograms and traceplots (see Fig. 4.2) and samples without burn-in.
+    For traceplot, the mean of b is computed after burn-in of N/3.
     """
     
     # Initial values are sampled from the prior distributions.
