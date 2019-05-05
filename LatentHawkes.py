@@ -117,7 +117,7 @@ def predictive_likelihood(lmbd, a, b, train, test, T_train, T_test, L=10000):
     """
     Compute Monte Carlo estimate of normalized predictive log-likelihood of Hawkes model as in eq. 3.4.
     As baseline model I used a homogeneous Poisson process of rate given by MLE on train set.
-    lmbd, a, b = sampled parameter distributions.
+    lmbd, a, b = distributions of sampled parameters.
     """
     
     # First compute homogeneous Poisson MLE
