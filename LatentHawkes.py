@@ -76,9 +76,6 @@ def LatHawkes(T, arrivals, alpha_lmbd, beta_lmbd, alpha_a, beta_a, alpha_b, beta
             cand_omega = sample_omega(curr_lmbd, curr_a, curr_b, arrivals, T)
             curr_omega = cand_omega
 
-            if i%100==0:
-                print(i)
-
     fig, ax = plt.subplots(3,2, figsize=(15,12))
     ax[0,0].hist(samples_b, ec='black', alpha=0.6)
     ax[0,0].set_title(r'Samples of $b$')
