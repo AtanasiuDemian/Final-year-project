@@ -6,6 +6,7 @@ def PMMH(Y, N, T, delta, alpha_b, beta_b, alpha_scale, beta_scale, scales_alpha,
     Particle Marginal Metropolis Hastings using Random Walk Metropolis for the MCMC step and bootstrap filter of Gordon et al,1993 
     for SMC step. 
     All parameters have Gamma priors.
+    """
     
     curr_alpha = uniform.rvs(loc=0, scale=1)
     curr_b = gamma.rvs(a=alpha_b, scale=1/beta_b)
