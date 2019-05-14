@@ -114,7 +114,7 @@ def opt_approx_filter(Y, N, T, alpha, b, scale, delta):
     Implement SMC using approximate optimal importance function as described in Doucet et al,2000.
     Note : pred_dist has the same indexing as Y.
     '''
-    b = b*delta
+    b = b*delta  # this is to simplify calculations, without including Delta (see Section 6.4) - this was only used for pMCMC.
     log_marginal_likelihood = 0.0
     particles = np.zeros((N, T+1))
     #particles[:,0] = norm.rvs(scale=np.sqrt(scale**2/(1-alpha**2)), size=N)
